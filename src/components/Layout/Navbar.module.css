@@ -1,7 +1,6 @@
 .nav {
 	background-color: var(--bg-nav);
 	color: var(--white);
-  height: 100vh;
 	padding: 20px;
   position: fixed;
   top: 0;
