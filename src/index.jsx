@@ -6,6 +6,7 @@ import {
 } from 'react-router-dom'
 import App from './App'
 import { routes } from './utils'
+import Home from './pages/Home'
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
+        element: <Home />,
       },
       {
         path: routes.getDocument(':id'),
