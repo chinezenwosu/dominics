@@ -9,9 +9,11 @@ const Toolbar = () => (
   </div>
 )
 
-const toolbarModule = {
-  container: `#${TOOLBAR_ID}`,
+const modules = {
+  toolbar: {
+    container: `#${TOOLBAR_ID}`,
+  }
 }
 
 export default Toolbar
-export { toolbarModule }
+export { modules }
