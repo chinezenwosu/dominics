@@ -7,6 +7,7 @@ import config from '../../config'
 import { debounce } from '../../utils'
 import 'react-quill/dist/quill.snow.css'
 import styles from './Document.module.css'
+import Navbar from './Layout/Navbar'
 
 const Document = () => {
   const editorRef = useRef()
@@ -58,18 +59,21 @@ const Document = () => {
   }
 
   return (
-    <div className={styles.container}>
-      <Toolbar />
-      <ReactQuill
-        ref={editorRef}
-        className={styles.document}
-        theme="snow"
-        readOnly={true}
-        value="Loading document..."
-        onChange={onChange}
-        modules={modules}
-      />
-    </div>
+    <>
+      <Navbar editor={editorRef?.current?.getEditor()} />
+      <main className={styles.container}>
+        <Toolbar />
+        <ReactQuill
+          ref={editorRef}
+          className={styles.document}
+          theme="snow"
+          readOnly={true}
+          value="Loading document..."
+          onChange={onChange}
+          modules={modules}
+        />
+      </main>
+    </>
   )
 }
 

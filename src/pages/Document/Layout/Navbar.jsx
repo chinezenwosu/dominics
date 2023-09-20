@@ -1,13 +1,23 @@
 import React from 'react'
 import { useParams } from 'react-router-dom/dist'
-import { routes } from '../../utils'
-import Logo from '../../assets/images/logo.svg'
+import { pdfExporter } from 'quill-to-pdf'
+import { saveAs } from 'file-saver'
+import { routes } from '../../../utils'
+import Logo from '../../../assets/images/logo.svg'
 import styles from './Navbar.module.css'
 
-const Navbar = () => {
+const Navbar = ({ editor }) => {
   const { id } = useParams()
 
   if (!id) return null
+
+  const exportAsPDF = async () => {
+    if (editor) {
+      const delta = editor.getContents()
+      const pdfAsBlob = await pdfExporter.generatePdf(delta)
+      saveAs(pdfAsBlob, `dominics-${id}.pdf`)
+    }
+  }
 
   return (
     <nav className={styles.nav}>
@@ -23,7 +33,12 @@ const Navbar = () => {
       </div>
       <input type="checkbox" id="menu-toggle" className={styles.menuToggle} />
       <ul className={styles.navLinks}>
-        <li><a href={routes.getHome()}>Home</a></li>
+        <li>
+          <button className={styles.navLink} onClick={exportAsPDF}>Export PDF</button>
+        </li>
+        <li>
+          <a className={styles.navLink} href={routes.getHome()}>Go home</a>
+        </li>
       </ul>
     </nav>
   )
