@@ -1,0 +1,37 @@
+:root {
+  --black: #000000;
+  --white: #ffffff;
+  --bg-default: #f9fbfd;
+  --primary: #1180af;
+  --font-family-default: 'Lato', 'Lucida Grande', 'Lucida Sans Unicode', Tahoma, Sans-Serif;
+  --font-family-editor: Arial, Helvetica, sans-serif;
+}
+
+html, body {
+  background-color: #f9fbfd;
+  color: #333333;
+  font-family: var(--font-family-default);
+  font-size: 1em;
+  margin: 0;
+  padding: 0;
+}
+
+*, *::after, *::before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.clearfix, 
+.clearfix::after, 
+.clearfix::before {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+.ql-container.ql-snow,
+.ql-toolbar.ql-snow {
+  border: none !important;
+  font-family: Helvetica !important;
+}
