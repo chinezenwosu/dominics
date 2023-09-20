@@ -9,11 +9,9 @@ const io = new Server({
   }
 })
 
-const documentController = new DocumentController()
-
 io.on('connection', (socket) => {
   socket.on('get-document', async (documentId) => {
-    const data = await documentController.getOrCreateDocument(documentId)
+    const data = await DocumentController.getOrCreateDocument(documentId)
     socket.join(documentId)
     socket.emit('load-document', data)
 
@@ -22,7 +20,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('save-document', async (data) => {
-      await documentController.updateDocument(documentId, data)
+      await DocumentController.updateDocument(documentId, data)
     })
   })
 })

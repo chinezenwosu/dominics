@@ -2,16 +2,16 @@ import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import ReactQuill from 'react-quill'
 import io from 'socket.io-client'
-import Toolbar, { toolbarModule } from './Toolbar'
+import Toolbar, { modules } from './Toolbar'
 import config from '../../config'
 import { debounce } from '../../utils'
 import 'react-quill/dist/quill.snow.css'
+import styles from './Document.module.css'
 
 const Document = () => {
   const editorRef = useRef()
   const [socket, setSocket] = useState(null)
   const { id: docId } = useParams()
-  const modules = { toolbar: toolbarModule }
 
   useEffect(() => {
     const soc = io(config.url.socket)
@@ -58,17 +58,18 @@ const Document = () => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <Toolbar />
       <ReactQuill
         ref={editorRef}
+        className={styles.document}
         theme="snow"
         readOnly={true}
         value="Loading document..."
         onChange={onChange}
         modules={modules}
       />
-    </>
+    </div>
   )
 }
 

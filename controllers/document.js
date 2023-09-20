@@ -1,38 +1,43 @@
 const redis = require('../redis');
 
-class DocumentController {
-  _handleError (e) {
+const DocumentController = (function() {
+  const _handleError = (e) => {
     console.log('error in document controller', e)
   }
 
-  async _createOrUpdateDocument(key, val) {
+  const _createOrUpdateDocument = async (key, val) => {
     await redis.set(key, JSON.stringify(val))
   }
 
-  async updateDocument(key, val) {
+  const updateDocument = async (key, val) => {
     try {
-      await this._createOrUpdateDocument(key, val)
+      await _createOrUpdateDocument(key, val)
     }
     catch (e) {
-      this._handleError(e)
+      _handleError(e)
     }
   }
 
-  async getOrCreateDocument(key) {
+  const getOrCreateDocument = async (key) =>  {
     try {
       const document =  await redis.get(key)
       const initialValue = '{}'
 
       if (document === undefined) {
-        await this._createOrUpdateDocument(key, initialValue)
+        await _createOrUpdateDocument(key, initialValue)
       }
   
       return JSON.parse(document || initialValue)
     }
     catch (e) {
-      this._handleError(e)
+      _handleError(e)
     }
   }
-}
+
+  return {
+    updateDocument,
+    getOrCreateDocument,
+  }
+})()
 
 module.exports = DocumentController
