@@ -3,11 +3,15 @@
 
 In the project directory, install package dependencies using the command:
 
-### `npm install`
+```
+npm install
+```
 
 Run the app with the following command:
 
-### `npm start`
+```
+npm start
+```
 
 The app will open [http://localhost:3000](http://localhost:3000) automatically in your browser.
 
@@ -24,4 +28,6 @@ Typescript is not used in this version
 
 Run the following command to build the app for production to the `dist` folder.
 
-`npm run build`
+```
+npm run build
+```
