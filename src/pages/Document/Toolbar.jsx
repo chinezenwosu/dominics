@@ -87,7 +87,7 @@ const formatOptions = [
 
 const customTools = {
   undo: (
-    <button key="undo" className="ql-undo">
+    <button className="ql-undo">
       <svg viewBox="0 0 18 18">
         <polygon className="ql-fill ql-stroke" points="6 10 4 12 2 10 6 10" />
         <path
@@ -98,7 +98,7 @@ const customTools = {
     </button>
   ),
   redo: (
-    <button key="redo" className="ql-redo">
+    <button className="ql-redo">
       <svg viewBox="0 0 18 18">
         <polygon className="ql-fill ql-stroke" points="12 10 14 12 16 10 12 10" />
         <path
@@ -118,7 +118,6 @@ const Toolbar = () => (
           buttons.map((button, index) => {
             let tool = (
               <button
-                key={index}
                 className={`ql-${button.name}`}
                 value={button.value}
               />
@@ -131,7 +130,6 @@ const Toolbar = () => (
             if (button.options) {
               tool = (
                 <Select
-                  key={index}
                   className={`ql-${button.name}`}
                   defaultValue={button.value}
                   options={button.options}
@@ -141,6 +139,7 @@ const Toolbar = () => (
 
             return (
               <span
+                key={index}
                 className={`${styles.toolContainer} ${index === 0 ? styles.toolDivider : ''}`}
               >
                 { tool }
