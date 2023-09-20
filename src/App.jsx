@@ -1,5 +1,17 @@
-import React from "react";
+import React from "react"
+import { Outlet } from 'react-router-dom'
 
-const App = () => (<div>Hello World</div>);
+const App = () => {
+  return (
+    <>
+      <nav>
+        Root app
+      </nav>
+      <main>
+        <Outlet />
+      </main>
+    </>
+  )
+}
 
-export default App;
+export default App
