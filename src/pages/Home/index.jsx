@@ -1,6 +1,8 @@
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
 import { routes } from '../../utils'
+import Button from '../../components/Button'
+import styles from './Home.module.css'
 
 const Home = () => {
   const navigate = useNavigate()
@@ -11,7 +13,11 @@ const Home = () => {
   }
 
   return (
-    <button onClick={() => addDocument()} />
+    <div className={styles.container}>
+      <div className={styles.center}>
+        <Button label="Create new document" onClick={() => addDocument()} />
+      </div>
+    </div>
   )
 }
 

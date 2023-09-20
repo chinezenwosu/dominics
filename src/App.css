@@ -94,3 +94,7 @@ html, body {
 .ql-snow .ql-picker-label {
   padding-left: 4px !important;
 }
+
+.ql-editor {
+  height: 100vh !important;
+}
