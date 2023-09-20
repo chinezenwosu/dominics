@@ -1,5 +1,6 @@
 const { Server } = require('socket.io')
 const config = require('./config')
+const DocumentController = require('./controllers/document')
 
 const io = new Server({
   cors: {
@@ -8,9 +9,11 @@ const io = new Server({
   }
 })
 
+const documentController = new DocumentController()
+
 io.on('connection', (socket) => {
   socket.on('get-document', async (documentId) => {
-    const data = ''
+    const data = await documentController.getOrCreateDocument(documentId)
     socket.join(documentId)
     socket.emit('load-document', data)
 
@@ -19,7 +22,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('save-document', async (data) => {
-      // save the document
+      await documentController.updateDocument(documentId, data)
     })
   })
 })
