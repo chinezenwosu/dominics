@@ -4,6 +4,7 @@ import ReactQuill from 'react-quill'
 import io from 'socket.io-client'
 import Toolbar, { toolbarModule } from './Toolbar'
 import config from '../../config'
+import { debounce } from '../../utils'
 import 'react-quill/dist/quill.snow.css'
 
 const Document = () => {
@@ -50,7 +51,10 @@ const Document = () => {
     if (socket === null || source !== 'user') return
 
     socket.emit('send-document-changes', delta)
-    socket.emit('save-document', editor.getContents())
+
+    debounce(() => {
+      socket.emit('save-document', editor.getContents())
+    }, 3000)()
   }
 
   return (
