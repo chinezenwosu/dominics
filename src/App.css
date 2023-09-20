@@ -35,3 +35,62 @@ html, body {
   border: none !important;
   font-family: Helvetica !important;
 }
+
+.ql-snow.ql-toolbar button,
+.ql-snow .ql-toolbar button {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  color: #444444;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.ql-font-arial,
+.ql-font span[data-value="arial"]::before {
+  font-family: Arial, sans-serif;
+}
+
+.ql-font-comic-sans,
+.ql-font span[data-value="comic-sans"]::before {
+  font-family: "Comic Sans MS", cursive, sans-serif;
+}
+
+.ql-font-courier-new,
+.ql-font span[data-value="courier-new"]::before {
+  font-family: "Courier New";
+}
+
+.ql-font-georgia,
+.ql-font span[data-value="georgia"]::before {
+  font-family: Georgia, serif;
+}
+
+.ql-font-helvetica,
+.ql-font span[data-value="helvetica"]::before {
+  font-family: Helvetica, sans-serif;
+}
+
+.ql-font-lucida,
+.ql-font span[data-value="lucida"]::before {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+.ql-snow .ql-picker.ql-font .ql-picker-label[data-label]:not([data-label=''])::before {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: calc(100% - 18px);
+}
+
+.ql-snow .ql-picker.ql-size {
+  width: 50px !important;
+}
+
+.ql-snow .ql-picker.ql-header {
+  width: 110px !important;
+}
+
+.ql-snow .ql-picker-label {
+  padding-left: 4px !important;
+}
