@@ -7,6 +7,7 @@ import {
 import App from './App'
 import { routes } from './utils'
 import Home from './pages/Home'
+import Document from './pages/Document'
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: routes.getDocument(':id'),
+        element: <Document />,
       },
     ],
   },
