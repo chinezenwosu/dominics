@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom/dist'
 import { pdfExporter } from 'quill-to-pdf'
 import { saveAs } from 'file-saver'
@@ -7,6 +7,7 @@ import Logo from '../../../assets/images/logo.svg'
 import styles from './Navbar.module.css'
 
 const Navbar = ({ editor }) => {
+  const [isEditable, setIsEditable] = useState(true)
   const { id } = useParams()
 
   if (!id) return null
@@ -19,11 +20,21 @@ const Navbar = ({ editor }) => {
     }
   }
 
+  const switchMode = () => {
+    setIsEditable((prev) => {
+      const newValue = !prev
+      editor.enable(newValue)
+      return newValue
+    })
+  }
+
   return (
     <nav className={styles.nav}>
       <div className={styles.navHead}>
-        <img src={Logo} className={styles.logo} />
-        <label for="menu-toggle">
+        <a href={routes.getHome()}>
+          <img src={Logo} className={styles.logo} />
+        </a>
+        <label htmlFor="menu-toggle">
           <div className={styles.toggleIcon}>
             <div></div>
             <div></div>
@@ -34,10 +45,17 @@ const Navbar = ({ editor }) => {
       <input type="checkbox" id="menu-toggle" className={styles.menuToggle} />
       <ul className={styles.navLinks}>
         <li>
-          <button className={styles.navLink} onClick={exportAsPDF}>Export PDF</button>
+          <button className={styles.navButton} onClick={switchMode}>
+            Switch to { isEditable ? 'view' : 'edit' } mode
+          </button>
         </li>
         <li>
-          <a className={styles.navLink} href={routes.getHome()}>Go home</a>
+          <button
+            className={styles.navButton}
+            onClick={exportAsPDF}
+          >
+            Export PDF
+          </button>
         </li>
       </ul>
     </nav>
