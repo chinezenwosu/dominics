@@ -58,7 +58,7 @@ const Document = () => {
   }
 
   return (
-    <>
+    <div className={styles.container}>
       <Toolbar />
       <ReactQuill
         ref={editorRef}
@@ -69,7 +69,7 @@ const Document = () => {
         onChange={onChange}
         modules={modules}
       />
-    </>
+    </div>
   )
 }
 

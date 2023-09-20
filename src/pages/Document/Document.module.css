@@ -1,23 +1,32 @@
 .document {
   background-color: var(--white);
   border: 1px solid #c7c7c7;
-  margin: 20px auto 0 auto;
+  margin: 15px auto;
   max-width: calc(100vw - 32px);
   min-height: 90vh;
-  padding: 10px;
   position: relative;
+}
+
+.container {
+  height: calc(100vh - 60px);
+  position: fixed;
+  width: 100%;
+  top: 60px;
+  overflow: scroll;
 }
 
 @media only screen and (min-width: 768px) {
   .document {
+    margin: 20px auto;
     max-width: 680px;
+    padding: 10px;
   }
 }
 
 @media only screen and (min-width: 992px) {
   .document {
     max-width: 80vw;
-    margin-top: 30px;
+    margin: 30px auto;
   }
 }
 
