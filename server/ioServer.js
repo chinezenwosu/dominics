@@ -1,5 +1,5 @@
 const { Server } = require('socket.io')
-const config = require('./config')
+const config = require('../config')
 const DocumentController = require('./controllers/document')
 
 const io = new Server({
