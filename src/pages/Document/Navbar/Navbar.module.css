@@ -1,7 +1,6 @@
 .nav {
 	background-color: var(--bg-nav);
 	color: var(--white);
-  height: 100vh;
 	padding: 20px;
   position: fixed;
   top: 0;
@@ -9,14 +8,9 @@
   z-index: 1000;
 }
 
-.nav a {
-	color: var(--white);
-	text-decoration: none;
-  font-size: 0.875rem;
-}
-
 .logo {
   height: 20px;
+	vertical-align: bottom;
 }
 
 .menuToggle {
@@ -32,6 +26,16 @@
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.navButton {
+	background-color: unset;
+	border: none;
+	color: var(--white);
+	cursor: pointer;
+	padding: 0;
+	text-decoration: none;
+  font-size: 0.875rem;
 }
 
 .nav label {
@@ -53,6 +57,15 @@
 .navHead {
 	display: flex;
 	justify-content: space-between;
+	min-width: 50%;
+}
+
+.logoContainer {
+	align-items: center;
+	display: flex;
+	gap: 10px;
+	justify-content: flex-start;
+	width: 100%;
 }
 
 .navLinks li {
@@ -86,5 +99,9 @@
 	
 	.menuToggle:not(:checked) + .navLinks {
 	  display: block;
+	}
+
+	.logoContainer {
+		gap: 20px;
 	}
 }

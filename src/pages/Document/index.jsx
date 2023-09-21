@@ -1,12 +1,24 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
-import ReactQuill from 'react-quill'
 import io from 'socket.io-client'
-import Toolbar, { modules } from './Toolbar'
+import Toolbar from './Toolbar'
 import config from '../../config'
-import { debounce } from '../../utils'
 import 'react-quill/dist/quill.snow.css'
 import styles from './Document.module.css'
+import Navbar from './Navbar'
+import TextEditor from './TextEditor'
+
+// Also update socketEmissions in /ioServer.js
+export const socketEmissions = {
+  GET_DOCUMENT: 'GET_DOCUMENT',
+  LOAD_DOCUMENT: 'LOAD_DOCUMENT',
+  SEND_DOCUMENT_CONTENT_CHANGES: 'SEND_DOCUMENT_CONTENT_CHANGES',
+  SEND_DOCUMENT_NAME_CHANGES: 'SEND_DOCUMENT_NAME_CHANGES',
+  RECEIVE_DOCUMENT_CONTENT_CHANGES: 'RECEIVE_DOCUMENT_CONTENT_CHANGES',
+  RECEIVE_DOCUMENT_NAME_CHANGES: 'RECEIVE_DOCUMENT_NAME_CHANGES',
+  SAVE_DOCUMENT_CONTENT: 'SAVE_DOCUMENT_CONTENT',
+  SAVE_DOCUMENT_NAME: 'SAVE_DOCUMENT_NAME',
+}
 
 const Document = () => {
   const editorRef = useRef()
@@ -25,51 +37,17 @@ const Document = () => {
   useEffect(() => {
     if (socket === null) return
 
-    socket.once('load-document', (document) => {
-      editorRef.current.getEditor().setContents(document)
-      editorRef.current.getEditor().enable()
-    })
-
-    socket.emit('get-document', docId)
+    socket.emit(socketEmissions.GET_DOCUMENT, docId)
   }, [socket, docId])
 
-  useEffect(() => {
-    if (socket === null) return
-  
-    const handler = (delta) => {
-      editorRef.current.getEditor().updateContents(delta)
-    }
-
-    socket.on('receive-document-changes', handler)
-
-    return () => {
-      socket.off('receive-document-changes', handler)
-    }
-  }, [socket])
-
-  const onChange = (_content, delta, source, editor) => {
-    if (socket === null || source !== 'user') return
-
-    socket.emit('send-document-changes', delta)
-
-    debounce(() => {
-      socket.emit('save-document', editor.getContents())
-    }, 3000)()
-  }
-
   return (
-    <div className={styles.container}>
-      <Toolbar />
-      <ReactQuill
-        ref={editorRef}
-        className={styles.document}
-        theme="snow"
-        readOnly={true}
-        value="Loading document..."
-        onChange={onChange}
-        modules={modules}
-      />
-    </div>
+    <>
+      <Navbar editorRef={editorRef} socket={socket} />
+      <main className={styles.container}>
+        <Toolbar />
+        <TextEditor editorRef={editorRef} socket={socket} />
+      </main>
+    </>
   )
 }
 
