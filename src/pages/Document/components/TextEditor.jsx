@@ -35,6 +35,7 @@ const TextEditor = ({ socket, editorRef }) => {
     <ReactQuill
       ref={editorRef}
       className={styles.editor}
+      placeholder="Start typing something..."
       theme="snow"
       readOnly={true}
       value="Loading document..."
