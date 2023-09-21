@@ -1,7 +1,7 @@
 import React from 'react'
 import { Quill } from 'react-quill'
-import { Select } from '../../components/Input'
-import { formatString } from '../../utils'
+import { Select } from '../../../components/Input'
+import { formatString } from '../../../utils'
 import styles from './Toolbar.module.css'
 
 const TOOLBAR_ID = 'toolbar'

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { debounce } from '../../../utils'
+import { debounce } from '../../../../utils'
 import styles from './NameInput.module.css'
-import { socketEmissions } from '..'
+import { socketEmissions } from '../..'
 
 const NameInput = ({ editor, socket }) => {
   const [documentName, setDocumentName] = useState('')
