@@ -1,9 +1,9 @@
 import React from 'react'
-import { routes } from '../../../utils'
+import { routes } from '../../../../utils'
 import NameInput from './NameInput'
 import PDFExportButton from './PDFExportButton'
 import EditorModeButton from './EditorModeButton'
-import Logo from '../../../assets/images/logo.svg'
+import Logo from '../../../../assets/images/logo.svg'
 import styles from './Navbar.module.css'
 
 const Navbar = ({ editorRef, socket }) => {

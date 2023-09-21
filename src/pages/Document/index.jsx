@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { useParams } from 'react-router-dom'
 import io from 'socket.io-client'
-import Toolbar from './Toolbar'
+import Toolbar from './components/Toolbar'
 import config from '../../config'
 import 'react-quill/dist/quill.snow.css'
 import styles from './Document.module.css'
-import Navbar from './Navbar'
-import TextEditor from './TextEditor'
+import Navbar from './components/Navbar'
+import TextEditor from './components/TextEditor'
 
 // Also update socketEmissions in /ioServer.js
 export const socketEmissions = {

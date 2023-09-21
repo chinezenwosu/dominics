@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react'
 import ReactQuill from 'react-quill'
 import { modules } from './Toolbar'
-import { debounce } from '../../utils'
-import { socketEmissions } from '.'
+import { debounce } from '../../../utils'
+import { socketEmissions } from '..'
 import styles from './TextEditor.module.css'
 import 'react-quill/dist/quill.snow.css'
 
@@ -35,6 +35,7 @@ const TextEditor = ({ socket, editorRef }) => {
     <ReactQuill
       ref={editorRef}
       className={styles.editor}
+      placeholder="Start typing something..."
       theme="snow"
       readOnly={true}
       value="Loading document..."
