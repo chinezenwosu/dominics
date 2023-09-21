@@ -14,6 +14,10 @@ const NameInput = ({ editor, socket }) => {
 
       editor.setContents(document.content)
       editor.enable()
+
+      if (!document.content) {
+        editor.focus()
+      }
     })
   }, [socket])
 

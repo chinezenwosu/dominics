@@ -23,7 +23,7 @@ const socketEmissions = {
 
 io.on('connection', (socket) => {
   socket.on(socketEmissions.GET_DOCUMENT, async (documentId) => {
-    const data = await DocumentController.getOrCreateDocument(documentId)
+    const data = await DocumentController.getDocument(documentId)
     socket.join(documentId)
     socket.emit(socketEmissions.LOAD_DOCUMENT, data)
 

@@ -31,18 +31,14 @@ const DocumentController = (function() {
     }
   }
 
-  const getOrCreateDocument = async (key, field) =>  {
+  const getDocument = async (key, field) =>  {
     try {
       const document = await redis.hGetAll(key)
-      const initialValue = '{}'
-
-      if (document.content === undefined) {
-        await _createOrUpdateDocument(key, 'content', initialValue)
-      }
+      const initialValue = '""'
 
       const formattedDocument = {
-        content: JSON.parse(document.content || '{}'),
-        name: JSON.parse(document.name || '""'),
+        content: JSON.parse(document.content || initialValue),
+        name: JSON.parse(document.name || initialValue),
       }
 
       return formattedDocument
@@ -55,7 +51,7 @@ const DocumentController = (function() {
   return {
     updateDocumentContent,
     updateDocumentName,
-    getOrCreateDocument,
+    getDocument,
   }
 })()
 
